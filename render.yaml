@@ -5,6 +5,22 @@ services:
     plan: free
     buildCommand: npm install && npm run build
     startCommand: npm run start:prod
+    healthCheckPath: /healthz
+    preDeployCommand: npm run migration:run
+    autoDeploy: true
+    includedPaths:
+      - src/**
+      - package.json
+      - package-lock.json
+      - tsconfig.json
+      - .env
+    ignoredPaths:
+      - node_modules/
+      - dist/
+      - .git/
+      - README.md
+      - .prettierrc
+      - .eslintrc.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -12,16 +28,28 @@ services:
         value: 3000
       - key: JWT_SECRET
         generateValue: true
+      - key: JWT_EXPIRATION
+        value: 3600
       - key: DB_HOST
-        value: mysql.railway.internal
+        sync: false
       - key: DB_PORT
         value: 3306
       - key: DB_USERNAME
-        value: root
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
       - key: DB_NAME
         value: digital_banking_system
       - key: NIBSS_API_BASE_URL
         value: https://nibssbyphoenix.onrender.com/api
+      - key: NIBSS_API_KEY
+        sync: false
+      - key: NIBSS_BANK_CODE
+        sync: false
+      - key: NIBSS_EMAIL
+        sync: false
+      - key: NIBSS_BANK_NAME
+        sync: false
       - key: LOG_LEVEL
         value: info
 
