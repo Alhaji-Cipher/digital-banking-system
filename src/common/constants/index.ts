@@ -1,0 +1,17 @@
+export const ACCOUNT_INITIAL_BALANCE = 15000; // ₦15,000
+export const ACCOUNT_MIN_BALANCE = 0;
+export const MAX_ACCOUNTS_PER_CUSTOMER = 1;
+
+export enum TransactionType {
+  INTRA_BANK_TRANSFER = 'INTRA_BANK_TRANSFER',
+  INTER_BANK_TRANSFER = 'INTER_BANK_TRANSFER',
+  DEPOSIT = 'DEPOSIT',
+  WITHDRAWAL = 'WITHDRAWAL',
+}
+
+export enum TransactionStatus {
+  PENDING = 'PENDING',
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED',
+  REVERSED = 'REVERSED',
+}
