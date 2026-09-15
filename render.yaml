@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: digital-banking-system
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        value: mysql.railway.internal
+      - key: DB_PORT
+        value: 3306
+      - key: DB_USERNAME
+        value: root
+      - key: DB_NAME
+        value: digital_banking_system
+      - key: NIBSS_API_BASE_URL
+        value: https://nibssbyphoenix.onrender.com/api
+      - key: LOG_LEVEL
+        value: info
+
+  - type: mysql
+    name: digital-banking-mysql
+    plan: free
+    version: 8.0
+    ipAllowList: []
